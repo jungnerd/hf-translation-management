@@ -10,6 +10,9 @@ wheels/
 .venv
 .claude
 
+# Python version management
+.python-version
+
 # Package-specific files
 *.csv
 /tmp/
