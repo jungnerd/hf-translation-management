@@ -1,6 +1,6 @@
-# HF Translations Management
+# 🤗 HF Translations Management
 
-Easy management for translations of Hugging Face project documentation.
+Easy management for translations of 🤗 Hugging Face project documentation.
 
 ## Acknowledgments
 
