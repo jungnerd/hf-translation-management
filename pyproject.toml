@@ -1,0 +1,96 @@
+[build-system]
+requires = ['hatchling']
+build-backend = 'hatchling.build'
+
+[tool.hatch.version]
+path = 'hf_translations/version.py'
+
+[project]
+name = 'hf-translations'
+description = 'Translation status report for Hugging Face documentation'
+authors = [
+    { name = 'jungnerd', email = 'your-email@example.com' },
+]
+license = 'MIT'
+readme = 'README.md'
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Information Technology',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: Unix',
+    'Operating System :: POSIX :: Linux',
+    'Operating System :: MacOS',
+    'Operating System :: Microsoft',
+    'Environment :: Console',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Documentation',
+]
+# TODO(human): Set appropriate Python version requirement
+# Consider: >=3.9 (wider compatibility) vs >=3.10 (balanced) vs >=3.11 (modern)
+requires-python = '>=3.11'
+dependencies = [
+    'gitpython>=3.1.44, <4.0.0',
+    'pydantic>=2.10.6, <3.0.0',
+    'typer>=0.15.1, <1.0.0',
+    'rich>=13.0.0, <14.0.0',
+    'requests>=2.31.0, <3.0.0',
+]
+dynamic = ['version']
+
+[project.scripts]
+hf-translations = "hf_translations.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = 'tests'
+log_cli = true
+log_cli_level = "ERROR"
+log_cli_format = "%(message)s"
+
+[tool.coverage.run]
+source = ['hf_translations']
+branch = true
+context = '${CONTEXT}'
+
+[tool.coverage.report]
+precision = 2
+
+[tool.coverage.paths]
+source = ['hf_translations/']
+
+[tool.ruff]
+line-length = 80
+target-version = 'py311'
+
+[tool.ruff.lint]
+extend-select = ['Q', 'RUF100', 'C90', 'UP', 'I']
+flake8-quotes = { inline-quotes = 'double', multiline-quotes = 'double' }
+isort = { known-first-party = ['hf_translations', 'tests'] }
+mccabe = { max-complexity = 14 }
+pydocstyle = { convention = 'google' }
+
+[tool.ruff.format]
+quote-style = 'double'
+indent-style = 'space'
+
+[tool.mypy]
+python_version = '3.11'
+show_error_codes = true
+follow_imports = 'silent'
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+warn_unused_configs = true
+disallow_subclassing_any = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
